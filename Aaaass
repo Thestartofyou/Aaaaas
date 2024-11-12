@@ -1,0 +1,36 @@
+import random
+import time
+
+# Define landscape elements
+LANDSCAPE_ELEMENTS = {
+    "tree": "🌲",
+    "hill": "^",
+    "water": "~",
+    "grass": " ",
+    "flower": "🌸",
+}
+
+# Generate a random row of landscape
+def generate_row(width):
+    row = ""
+    for _ in range(width):
+        element = random.choices(
+            list(LANDSCAPE_ELEMENTS.values()),
+            weights=[0.1, 0.15, 0.1, 0.5, 0.15]
+        )[0]
+        row += element
+    return row
+
+# Print landscape with a scrolling effect
+def display_landscape(width, height):
+    print("\n" * 3)  # Start a few lines down
+    for _ in range(height):
+        print(generate_row(width))
+        time.sleep(0.1)
+
+# Set dimensions for the landscape
+landscape_width = 50
+landscape_height = 20
+
+# Display the animated landscape
+display_landscape(landscape_width, landscape_height)
